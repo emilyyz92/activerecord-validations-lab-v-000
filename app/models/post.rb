@@ -8,7 +8,7 @@ class Post < ActiveRecord::Base
   TITLE_MATCH_ARRAY = [/Won't Believe/, /Secret/, /Top [0..99]/, /guess/]
 
   def title_include
-    if TITLE_MATCH_ARRAY.none? {|a| title || title.match(a)}
+    if TITLE_MATCH_ARRAY.none? {|a| a.match(title)}
       errors.add(:title, "Title is not sufficiently
       clickbait-y")
     end
