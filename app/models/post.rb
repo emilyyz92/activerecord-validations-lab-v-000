@@ -9,5 +9,7 @@ class Post < ActiveRecord::Base
 
   def title_include?
     if TITLE_MATCH_ARRAY.none? {|a| title.include?(a)}
+      self.errors[:title] = "must be clickbait"
+    end
   end
 end
