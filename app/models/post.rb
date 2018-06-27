@@ -5,6 +5,6 @@ class Post < ActiveRecord::Base
   validates :category, includsion: in:%w(Fiction Non-Fiction)
 
 
-  def title_match
+  def title_match_array
   end
 end
