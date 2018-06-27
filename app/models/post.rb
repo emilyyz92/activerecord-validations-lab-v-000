@@ -5,10 +5,10 @@ class Post < ActiveRecord::Base
   validates :category, inclusion: {in: %w(Fiction Non-Fiction)}
   validate :title_include, on: :create
 
-  TITLE_MATCH_ARRAY = ["Won't Believe", "Secret", /Top [0..99]/, /guess/]
+  TITLE_MATCH_ARRAY = [/Won't Believe/, /Secret/, /Top [0..99]/, /guess/]
 
   def title_include
-    if TITLE_MATCH_ARRAY.none? {|a| title.include?(a)}
+    if TITLE_MATCH_ARRAY.none? {|a| title.match(a)}
       errors.add(:title, "Title is not sufficiently
       clickbait-y")
     end
